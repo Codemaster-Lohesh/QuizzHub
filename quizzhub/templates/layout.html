@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    {% if title %}
+        <title>QuizzHub - {{title}}</title>
+    {% else %}
+        <title>QuizzHub</title>
+    {% endif %}
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar">
+            <div class="nav-item"><a href="#"  id="title">QuizzHub</a></div>
+            <div class="sub-nav">
+                <div class="nav-item"><a href="{{ url_for('home') }}">Home</a></div>
+                <div class="nav-item"><a href="{{ url_for('search') }}">Search</a></div>
+                <div class="nav-item"><a href="{{ url_for('about') }}">About</a></div>
+            </div>
+            <div class="sub-nav">
+                {% if current_user.is_authenticated %}
+                    <div class="nav-item"><a href="{{ url_for('new_quiz') }}">New Quiz</a></div>
+                    <div class="nav-item"><a href="{{ url_for('account') }}">Account</a></div>
+                    <div class="nav-item"><a href="{{ url_for('logout') }}">Logout</a></div>
+                {% else %}
+                    <div class="nav-item"><a href="{{ url_for('register') }}">Register</a></div>
+                    <div class="nav-item"><a href="{{ url_for('login') }}">Login</a></div>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+    <div class="main-wrapper">
+        <aside class="side-bar">
+
+        </aside>
+        <main class="main-content">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+            {% endwith %}
+            {% block content %}{% endblock %}
+        </main>
+        <aside class="side-bar">
+
+        </aside>
+    </div>
+    
+</body>
+</html>

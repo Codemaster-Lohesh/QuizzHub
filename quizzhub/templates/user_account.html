@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-wrapper">
+        <div class="account-details">
+            <img class="account-img" src="{{ image_file }}" alt="">
+            <h1>{{ user.username }}</h1>
+            <p>{{ user.email }}</p>
+        </div>
+        <div>
+            <h2>Quizes</h2>
+            <hr>
+            {% for quiz in quizes %}
+                <div class="quiz-container">
+                    
+                    <img class="display-img" src="{{url_for('static',filename='profile_pics/'+ quiz.author.image_file)}}" alt="">
+                    
+                    
+                    <div class="display-content">
+                        <h1><a href="{{url_for('quiz',quiz_id=quiz.id)}}">{{quiz.title}}</a></h1>
+                        <p>By <span>{{quiz.author.username}}</span> on {{quiz.date_posted.strftime('%Y-%m-%d')}}</p>
+                    </div>
+                </div>
+            {% endfor %}  
+        </div>
+    </div>
+{% endblock content%}

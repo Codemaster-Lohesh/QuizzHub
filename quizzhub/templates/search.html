@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <div class="content-wrapper">
+        <form method="POST" action="">
+            <div class="search-bar">
+                {{ form.hidden_tag() }}
+                {{ form.user.label }}
+                {{ form.user }}
+
+                {{ form.submit }}
+            </div>
+        </form>
+        
+    </div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <div class="content-wrapper">
+        <div>
+            <h2>Results</h2>
+            <hr>
+            {% if users %}
+                {% for user in users %}
+                    {% for quiz in user.quizes %}
+                        <div class="quiz-container">
+                            <a href="{{url_for('user_account',user_id=quiz.author.id)}}">
+                                <img class="display-img" src="{{url_for('static',filename='profile_pics/'+ quiz.author.image_file)}}" alt="">
+                            </a>
+                            
+                            <div class="display-content">
+                                <h1><a href="{{url_for('quiz',quiz_id=quiz.id)}}">{{quiz.title}}</a></h1>
+                                <p>By <span>{{quiz.author.username}}</span> on {{quiz.date_posted.strftime('%Y-%m-%d')}}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

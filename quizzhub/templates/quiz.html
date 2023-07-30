@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="quiz-container">
+    <img class="display-img" src="{{url_for('static',filename='profile_pics/'+ quiz.author.image_file)}}" alt="">
+    <div class="display-content">
+         <h1>{{quiz.title}}</h1>
+         <p>By {{quiz.author.username}} on {{quiz.date_posted.strftime('%Y-%m-%d')}}</p>
+        <hr><br>
+        <h2>{{ quiz.question }}</h2>
+        <ol>
+            <li>{{ quiz.option1 }}</li>
+            <li>{{ quiz.option2 }}</li>
+            <li>{{ quiz.option3 }}</li>
+            <li>{{ quiz.option4 }}</li>
+        </ol>
+        <br>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.answer.label }}
+            {{ form.answer }}
+            <br>
+            {{ form.submit }}
+        </form>
+    </div>
+</div>
+
+{% endblock content%}

@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Create Quiz</h2>
+    <form method="post">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.quiz_name.label }}<br>
+            {{ form.quiz_name }}
+        </div>
+        <div>
+            {{ form.question.label }}<br>
+            {{ form.question }}
+        </div>
+        <div>
+            {{ form.option1.label }}<br>
+            {{ form.option1 }}
+        </div>
+        <div>
+            {{ form.option2.label }}<br>
+            {{ form.option2 }}
+        </div>
+        <div>
+            {{ form.option3.label }}<br>
+            {{ form.option3 }}
+        </div>
+        <div>
+            {{ form.option4.label }}<br>
+            {{ form.option4 }}
+        </div>
+        <div>
+            {{ form.correct_option.label }}<br>
+            {{ form.correct_option }}
+        </div>
+        <div>
+            {{ form.submit }}
+        </div>
+    </form>
+{% endblock %}
